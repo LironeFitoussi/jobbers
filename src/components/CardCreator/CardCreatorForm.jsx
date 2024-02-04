@@ -46,8 +46,7 @@ function CreatorForm(props){
         
         {formStage == 2 ?
             <div>
-            {isProvider ? 
-            <form action="" name="freelancerForm" onSubmit={submitForm}>
+        <form action="" name="freelancerForm" onSubmit={submitForm}>
                 <h1>This is the Freelancer's form</h1>
                 <div>
                     <label htmlFor="fullName">Full name : </label>
@@ -67,7 +66,7 @@ function CreatorForm(props){
                 </div>
                 <div>
                     <select name="category" id="" onChange={inputUpdater}>
-                        <option value="" disabled>Pick the Category : </option>
+                        <option value="" selected disabled>Pick the Category : </option>
                         <option value="Graphics-And-Designs">Graphics & Design</option>
                         <option value="Programming-And-Tech">Programming & Tech</option>
                         <option value="Digital-Marketing">Digital Marketing</option>
@@ -77,53 +76,22 @@ function CreatorForm(props){
                         <option value="Business">Business</option>
                         <option value="Consulting">Consulting</option>
                     </select>
-                    {/* <label htmlFor="category">Category : </label>
-                    <input type="text" name="category" onChange={inputUpdater} /> */}
                 </div>
                 <div>
                     <label htmlFor="description">Description : </label>
                     <textarea name="description" onChange={inputUpdater} id="" cols="30" rows="10"></textarea>
                 </div>
-                <div>
+                {isProvider?  <div>
                     <label htmlFor="experience">Experience : </label>
                     <input type="number" onChange={inputUpdater} name="experience" />
                     <select name="time" onChange={inputUpdater} >
                         <option value=" years">Years</option>
                         <option value=" months">Months</option>
                     </select>
-                </div>
+                </div>:null}
+              
                 <button type="submit" name="submitBtn">Submit Form</button>
             </form>
-        :
-        <form action="" name="clientForm" onSubmit={submitForm}>
-            <h1>This is the Client's form</h1>
-            <div>
-                <label htmlFor="fullName">Full name : </label>
-                <input type="text" name="fullName" onChange={inputUpdater} disabled value={`${user?.fName , user?.lName}`}/>
-            </div>
-            <div>
-                <label htmlFor="email">Email : </label>
-                <input type="text" name="email" onChange={inputUpdater} disabled value={user?.email}/>
-            </div>
-            <div>
-                <label htmlFor="phone">Phone number : </label>
-                <input type="text" name="phone" onChange={inputUpdater} disabled value={user?.phone}/>
-            </div>
-            <div>
-                <label htmlFor="age">Age : </label>
-                <input type="text" name="age" onChange={inputUpdater} disabled value={user?.age}/>
-            </div>
-            <div>
-                {/* TODO : Change to select (when we know the options.) */}
-                <label htmlFor="category">Category : </label>
-                <input type="text" name="category" onChange={inputUpdater} />
-            </div>
-            <div>
-                <label htmlFor="description">Description : </label>
-                <textarea name="description" onChange={inputUpdater} id="" cols="30" rows="10"></textarea>
-            </div>
-            <button type="submit">Submit Form</button>
-        </form>}
         </div> : null}
     </div>
     )

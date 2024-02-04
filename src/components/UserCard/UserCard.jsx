@@ -21,6 +21,8 @@ const UserCard = ({ service, isPreview, selectAServiceHandler,isSwiper }) => {
     console.log("next card");
   };
 
+  console.log(service);
+
   const addToWanted = async () => {
     console.log("i want  him");
     // todo: set add to Favorites logic (await)
@@ -34,10 +36,8 @@ const UserCard = ({ service, isPreview, selectAServiceHandler,isSwiper }) => {
       console.log("he didn't like me, i will add to his Liked me");
       if(myServiceData.iLiked.indexOf(id)==-1){
       console.log("i will add to my Ilike");
-
         myServiceData.iLiked.push(id)
         await updateDoc(doc(db,"Matches",chosenService), { iLiked: myServiceData.iLiked });
-
       }
       
       if(currentServiceData.likedMe.indexOf(chosenService)==-1){
@@ -45,7 +45,6 @@ const UserCard = ({ service, isPreview, selectAServiceHandler,isSwiper }) => {
           await updateDoc(doc(db,"Matches",id), { likedMe: currentServiceData.likedMe });
           console.log("added to curr LIKED ME");
       }
-    
     }
     else{
       console.log("We in THE BIG else");
@@ -57,10 +56,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler,isSwiper }) => {
       myServiceData.matches.push(id)
       await updateDoc(doc(db,"Matches",chosenService), { matches: myServiceData.matches })
       }
-
     }
-
-    
   };
 
   const addToUnwanted = async () => {
@@ -68,6 +64,8 @@ const UserCard = ({ service, isPreview, selectAServiceHandler,isSwiper }) => {
     // todo: set add to  No Favorites logic (await)
     nextCard();
   };
+
+  console.log(category);
 
   return (
     <div
