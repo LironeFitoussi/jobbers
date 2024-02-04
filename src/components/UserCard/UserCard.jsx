@@ -12,6 +12,8 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
     console.log("next card");
   };
 
+  console.log(service);
+
   const addToWanted = async () => {
     console.log("i want  him");
     // todo: set add to Favorites logic (await)
@@ -24,23 +26,22 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
     if (currentServiceData.iLiked.indexOf(chosenService) == -1) {
       // i am not in card iLiked
       console.log("he didn't like me, i will add to his Liked me");
-      if (myServiceData.iLiked.indexOf(id) == -1) {
-        console.log("i will add to my Ilike");
+      if(myServiceData.iLiked.indexOf(id)==-1){
+      console.log("i will add to my Ilike");
 
-        myServiceData.iLiked.push(id);
-        await updateDoc(doc(db, "Matches", chosenService), {
-          iLiked: myServiceData.iLiked,
-        });
-      }
+        myServiceData.iLiked.push(id)
+        await updateDoc(doc(db,"Matches",chosenService), { iLiked: myServiceData.iLiked });
 
-      if (currentServiceData.likedMe.indexOf(chosenService) == -1) {
-        currentServiceData.likedMe.push(chosenService);
-        await updateDoc(doc(db, "Matches", id), {
-          likedMe: currentServiceData.likedMe,
-        });
-        console.log("added to curr LIKED ME");
       }
-    } else {
+      
+      if(currentServiceData.likedMe.indexOf(chosenService)==-1){
+      currentServiceData.likedMe.push(chosenService)
+          await updateDoc(doc(db,"Matches",id), { likedMe: currentServiceData.likedMe });
+          console.log("added to curr LIKED ME");
+      }
+    
+    }
+    else{
       console.log("We in THE BIG else");
       console.log(
         currentServiceData.matches.indexOf(chosenService) == -1 &&
@@ -51,16 +52,15 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
         myServiceData.matches.indexOf(id) == -1
       ) {
         console.log("enter matches");
-        currentServiceData.matches.push(chosenService);
-        await updateDoc(doc(db, "Matches", id), {
-          matches: currentServiceData.matches,
-        });
-        myServiceData.matches.push(id);
-        await updateDoc(doc(db, "Matches", chosenService), {
-          matches: myServiceData.matches,
-        });
+      currentServiceData.matches.push(chosenService)
+      await updateDoc(doc(db,"Matches",id), { matches: currentServiceData.matches });
+      myServiceData.matches.push(id)
+      await updateDoc(doc(db,"Matches",chosenService), { matches: myServiceData.matches })
       }
+
     }
+
+    
   };
 
   const addToUnwanted = async () => {
@@ -72,6 +72,8 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
       disLike: myServiceData.disLike,
     });
   };
+
+  console.log(category);
 
   return (
     <div
