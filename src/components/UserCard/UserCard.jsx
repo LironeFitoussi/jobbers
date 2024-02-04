@@ -1,8 +1,8 @@
 import styles from './UserCard.module.css'
 import { collection, doc, getDoc } from "firebase/firestore";
-
+import { db } from '../../config/firebase';
 const UserCard = ({ service, isPreview }) => {
-    const { id, category, desc, fName, lName, age, type, experince, uid } = service
+    const { serviceId, category, desc, fName, lName, age, type, experince, uid } = service
     console.log(service);
     const nextCard = () => {
         // todo: set next card logic   
@@ -12,7 +12,6 @@ const UserCard = ({ service, isPreview }) => {
     const addToWanted = async () => {
         console.log('i want  him');
         // todo: set add to Favorites logic (await)
-
         //Step 1: Check if user liked
         //1.1: fetch target match card
         console.log(serviceId);
@@ -20,15 +19,25 @@ const UserCard = ({ service, isPreview }) => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
+            //1.2: check at 'target' likes if user card exist
+
+            const likedOnes = docSnap.data().iLiked
+            likedOnes.some((index) => {
+                //Step 2: if target liked:
+
+                if (index === uid) {
+                    console.log(true);
+
+                }
+            }
+            );
+
         } else {
             console.log("No such document!");
         }
 
 
-        //1.2: check at 'target' likes if user card exist
 
-        //Step 2: if target liked:
         //2.1: set arrayUnion to matches and add uid
         //2.2: remove uid from likes array
 
