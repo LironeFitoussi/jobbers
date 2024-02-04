@@ -9,14 +9,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/auth' element={< Authentification />} />
         <Route path='/matches' element={< Matches />} />
-        <Route path='/settigns' element={< Settings />} />
+        {/* <Route path='/settigns' element={< Settings />} /> */}
       </Routes>
-      <Footer />
     </BrowserRouter>
   )
 }
