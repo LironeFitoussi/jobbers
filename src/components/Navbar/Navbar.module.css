@@ -73,3 +73,28 @@
     border-radius: .45rem;
     color: white;
 }
+
+.homeIcon {
+    width: 5vw;
+    border: solid 1px #000;
+    padding: 20%;
+    border-radius: 5rem;
+}
+
+.matchesIcon {
+    width: 7.5vw;
+    border: solid 1px #000;
+    border-radius: 5rem;
+}
+
+.logOut {
+    width: 5vw;
+    border: solid 1px #000;
+    padding: 20%;
+    border-radius: 5rem;
+}
+
+.logOutBtn {
+    background-color: transparent;
+    border: none;
+}

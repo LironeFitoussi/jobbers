@@ -46,7 +46,7 @@ const Swiper = ({ userType }) => {
         fetchServices();
     }, [userType]);
 
-    console.log(servicesArr);
+    // console.log(servicesArr);
 
     return (
         <div className={styles.container}>
