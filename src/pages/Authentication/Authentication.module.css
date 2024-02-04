@@ -3,3 +3,14 @@
     flex-direction: column;
     align-items: center;
 }
+
+.authDiv h3 {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.authDiv h3 span {
+    text-decoration: underline;
+}
