@@ -13,8 +13,7 @@ const UserCard = ({ service }) => {
         console.log('i want  him');
         // todo: set add to Favorites logic (await)
         let userQuery = query(
-            collection(db, 'Matches'),
-            where()
+            collection(db, 'Matches',),
         );
 
         // const docRef = doc(db, "cities", );
