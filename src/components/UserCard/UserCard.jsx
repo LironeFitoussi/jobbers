@@ -2,6 +2,7 @@ import styles from './UserCard.module.css'
 const UserCard = ({ service }) => {
     const { category, desc, fName, lName, age, type, experince } = service
     console.log(service);
+
     const nextCard = () => {
         // todo: set next card logic   
         console.log('next card');

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../config/firebase.js';
 import UserCard from "../../components/UserCard/UserCard";
+import styles from './Swiper.module.css'
 
 const Swiper = ({ userPref }) => {
     const [servicesArr, setServicesArr] = useState([]);
@@ -34,7 +35,7 @@ const Swiper = ({ userPref }) => {
     console.log(servicesArr);
 
     return (
-        <div>
+        <div className={styles.container}>
             {servicesArr.length > 0 ? servicesArr.map((service, index) => (
                 <UserCard key={index} service={service} />
             )) : <p>No Data Available</p>}
