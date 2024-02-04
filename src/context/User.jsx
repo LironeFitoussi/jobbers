@@ -53,6 +53,7 @@ export default function UserProvider({ children }) {
       console.log(error);
     }
   };
+  
   const shared = { user, setUser, setUserFromDb, signOutHandler,chosenService , setChosenService};
   return <UserContext.Provider value={shared}>{children}</UserContext.Provider>;
 }
