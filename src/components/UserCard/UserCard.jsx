@@ -2,7 +2,7 @@ import styles from './UserCard.module.css'
 import { collection, doc, getDoc } from "firebase/firestore";
 
 const UserCard = ({ service }) => {
-    const { id, category, desc, fName, lName, age, type, experince, uid } = service
+    const { serviceId, category, desc, fName, lName, age, type, experince, uid } = service
     console.log(service);
     const nextCard = () => {
         // todo: set next card logic   
@@ -42,7 +42,7 @@ const UserCard = ({ service }) => {
                 <div className={styles.cardHeader}>
                     <h1>{fName + ' ' + lName} <span>{age}</span></h1>
                     <p>{category}</p>
-                    < div >
+                    <div div >
                         {type === 'freelancer' && <p>EXPERirnce: {experince}</p>}
                         <p>About Me: {desc}</p>
                     </div>
