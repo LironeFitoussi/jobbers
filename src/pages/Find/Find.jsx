@@ -2,14 +2,12 @@ import { useContext } from "react";
 import Swiper from "../../components/Swiper/Swiper";
 import { UserContext } from '../../context/User'
 import styles from './Find.module.css'
-
+import { useParams } from "react-router-dom";
 export default function Find() {
-    // const { user } = useContext(UserContext)
-    // console.log(user);
-
-    const user = {
-        type: 'employer'
-    }
+    const { user } = useContext(UserContext)
+    
+    
+  
     return (
         <section>
             <header>

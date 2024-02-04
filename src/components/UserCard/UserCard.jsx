@@ -4,7 +4,7 @@ import { db } from '../../config/firebase';
 import { useContext } from 'react';
 import { UserContext } from '../../context/User';
 const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
-    const { serviceId, category, desc, fName, lName, age, type, experince, uid } = service
+    const { serviceId, category, description, fName, lName, age, type, experince, uid } = service
     const { chosenService } = useContext(UserContext)
     const nextCard = () => {
         // todo: set next card logic   
@@ -35,30 +35,9 @@ const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
                 await updateDoc(docRef, { matches: matchedList, iliked: likedList })
                 console.log("already exist");
             }
-            // console.log(docSnap.data());
-            // const likedOnes = docSnap.data().iLiked
-            // likedOnes.some((index) => {
-            //Step 2: if target liked:
-            //         console.log(index);
-            //     if (index === uid) {
-            //         console.log(true);
+         
 
-            likedOnes.some(async (index) => {
-                if (index === uid) {
-                    console.log('true');
-                    const docRef = doc(db, "Matches", serviceId);
-                    await updateDoc(docRef, {
-                        matches: arrayUnion(chosenService)
-                    });
-                    console.log('added to favorites');
-                } else {
-                    console.log('target dont like you');
-                }
-            })
-
-        } else {
-            console.log("No such document!");
-        }
+        } 
 
 
 
@@ -85,7 +64,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
                     <p>{category}</p>
                     <div div >
                         {type === 'freelancer' && <p>EXPERirnce: {experince}</p>}
-                        <p>About Me: {desc}</p>
+                        <p>About Me: {description}</p>
                     </div>
                 </div>
                 {!isPreview && (
