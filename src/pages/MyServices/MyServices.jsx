@@ -31,13 +31,16 @@ function MyServices() {
     console.log(serviceId);
     navigate(`/find/${serviceId}`)
   }
+  const navToCreator=()=>{
+    navigate(`/creator`)
+
+  }
   return (
     <div className={styles.container}>
       {myServicesList.map((item, index) => {
         return <UserCard selectAServiceHandler={selectAServiceHandler} key={index} service={item} isPreview={true} />
       })}
-      <button>add another</button>
-      <button>use the selected service</button>
+      <div onClick={navToCreator} className={styles.addAnotherBtn}>+</div>
     </div>
   )
 }
