@@ -1,5 +1,5 @@
 import styles from './UserCard.module.css'
-import { collection, doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from '../../config/firebase';
 import { useContext } from 'react';
 import { UserContext } from '../../context/User';
@@ -16,14 +16,28 @@ const UserCard = ({ service, isPreview }) => {
         // todo: set add to Favorites logic (await)
         //Step 1: Check if user liked
         //1.1: fetch target match card
-        const docRef = doc(db, "Matches", serviceId);
+        const docRef = doc(db, "Matches", "DZJDMKMMeflYRMLMRDRN");
         const docSnap = await getDoc(docRef);
-
         if (docSnap.exists()) {
             //1.2: check at 'target' likes if user card exist
             console.log(docSnap.data().iliked);
 
-            const likedOnes =docSnap.data().iliked
+            const likedList =docSnap.data().iliked
+            const matchedList=docSnap.data().matches
+            const whereIsLiked=likedList.indexOf(chosenService)
+            // query to check if A liked B and B liked A
+            if(whereIsLiked==-1){
+                likedList.push(chosenService)
+                await updateDoc(docRef, { iliked: likedList });
+                
+                
+            }
+            else{   
+                likedList.splice(whereIsLiked, 1);
+                matchedList.push(chosenService)
+                await updateDoc(docRef, {matches:matchedList , iliked:likedList })
+                console.log("already exist");
+            }
             // console.log(docSnap.data());
             // const likedOnes = docSnap.data().iLiked
             // likedOnes.some((index) => {
