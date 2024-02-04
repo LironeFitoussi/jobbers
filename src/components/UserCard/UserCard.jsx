@@ -1,5 +1,5 @@
 import styles from './UserCard.module.css'
-import { collection, doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from '../../config/firebase';
 import { useContext } from 'react';
 import { UserContext } from '../../context/User';
@@ -16,9 +16,8 @@ const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
         // todo: set add to Favorites logic (await)
         //Step 1: Check if user liked
         //1.1: fetch target match card
-        const docRef = doc(db, "Matches", serviceId);
+        const docRef = doc(db, "Matches", "DZJDMKMMeflYRMLMRDRN");
         const docSnap = await getDoc(docRef);
-
         if (docSnap.exists()) {
             //1.2: check at 'target' likes if user card exist
             console.log(docSnap.data().iliked);
