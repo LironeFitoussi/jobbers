@@ -2,24 +2,38 @@ import React, { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../config/firebase.js';
 import UserCard from "../../components/UserCard/UserCard";
-import styles from './Swiper.module.css'
+import styles from './Swiper.module.css';
 
-const Swiper = ({ userPref }) => {
+const Swiper = ({ userType }) => {
     const [servicesArr, setServicesArr] = useState([]);
 
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const servicesCollectionRef = collection(db, 'Services');
-                const serviceQuery = query(
-                    servicesCollectionRef,
-                    where('category', '==', 'Photographer'),
-                    where('isActive', '==', true)
-                );
+                let serviceQuery;
+                if (userType === 'employer') {
+                    serviceQuery = query(
+                        collection(db, 'Services'),
+                        where('category', '==', 'Photographer'),
+                        where('isActive', '==', true),
+                        where('type', '==', 'freelancer'),
+                    );
+                } else if (userType === 'freelancer') {
+                    serviceQuery = query(
+                        collection(db, 'Services'),
+                        where('category', '==', 'Photographer'),
+                        where('isActive', '==', true),
+                        where('type', '==', 'employer'),
+                    );
+                }
+
                 const servicesSnapshot = await getDocs(serviceQuery);
 
                 if (!servicesSnapshot.empty) {
-                    const allServices = servicesSnapshot.docs.map(doc => doc.data());
+                    const allServices = servicesSnapshot.docs.map(doc => ({
+                        ...doc.data(),
+                        id: doc.id
+                    }));
                     setServicesArr(allServices);
                 } else {
                     console.error('No services found for the given category');
@@ -30,7 +44,7 @@ const Swiper = ({ userPref }) => {
         };
 
         fetchServices();
-    }, []);
+    }, [userType]);
 
     console.log(servicesArr);
 

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import UserProvider from "../../context/User";
 import { UserContext } from "../../context/User";
 
@@ -7,11 +7,14 @@ import { UserContext } from "../../context/User";
 
 function CreatorForm(){
 
-    const {user, setUser, setUserFromDb, signOutHandler} = useContext(UserContext)
+    const {user} = useContext(UserContext)
     const [isProvider,setIsProvider] = useState(null)
+    const [formData,setFormData] = useState({})
+
+    
     console.log(user);
 
-    //? Info to put inside : user.firstName, user.lastName, user.Phone, user.Email, user.Age
+    //? Info to put inside : user?.firstName, user?.lastName, user.Phone, user.Email, user.Age
 
     const validateType = (e) =>{
         if(e.target.value == "Freelancer"){
@@ -37,21 +40,22 @@ function CreatorForm(){
         </select>
         {isProvider ? 
             <form action="" name="freelancerForm">
+                <h1>This is the Client's form</h1>
                 <div>
                     <label htmlFor="userFullName">Full name : </label>
-                    <input type="text" name="userFullName" disabled value={user.firstName +" "+ user.lastName}/>
+                    <input type="text" name="userFullName" disabled value={user?.firstName +" "+ user?.lastName}/>
                 </div>
                 <div>
                     <label htmlFor="userEmail">Email : </label>
-                    <input type="text" name="userEmail" disabled value={user.Email}/>
+                    <input type="text" name="userEmail" disabled value={user?.Email}/>
                 </div>
                 <div>
                     <label htmlFor="userPhone">Phone number : </label>
-                    <input type="number" name="userPhone" disabled value={user.phoneNumber}/>
+                    <input type="number" name="userPhone" disabled value={user?.Phone}/>
                 </div>
                 <div>
                     <label htmlFor="userAge">Age : </label>
-                    <input type="text" name="userAge" disabled value={user.Age}/>
+                    <input type="text" name="userAge" disabled value={user?.Age}/>
                 </div>
                 <div>
                     {/* TODO : Change to select */}
@@ -72,7 +76,34 @@ function CreatorForm(){
                 </div>
             </form>
         :
-        null
+        <form action="" name="clientForm">
+            <h1>This is the Client's form</h1>
+            <div>
+                <label htmlFor="userFullName">Full name : </label>
+                <input type="text" name="userFullName" disabled value={user?.firstName +" "+ user?.lastName}/>
+            </div>
+            <div>
+                <label htmlFor="userEmail">Email : </label>
+                <input type="text" name="userEmail" disabled value={user?.Email}/>
+            </div>
+            <div>
+                <label htmlFor="userPhone">Phone number : </label>
+                <input type="number" name="userPhone" disabled value={user?.phoneNumber}/>
+            </div>
+            <div>
+                <label htmlFor="userAge">Age : </label>
+                <input type="text" name="userAge" disabled value={user?.Age}/>
+            </div>
+            <div>
+                {/* TODO : Change to select (when we know the options.) */}
+                <label htmlFor="Category">Category : </label>
+                <input type="text" name="Category" />
+            </div>
+            <div>
+                <label htmlFor="Description">Description : </label>
+                <textarea name="Description" id="" cols="30" rows="10"></textarea>
+            </div>
+        </form>
         }
     </div>
     )

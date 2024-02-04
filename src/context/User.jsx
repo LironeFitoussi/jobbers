@@ -25,12 +25,15 @@ export default function UserProvider({ children }) {
   const onUserChange = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
+        console.log(user);
         const userRef = doc(db, "Users", user.uid);
         try {
           const docSnapshot = await getDoc(userRef);
           const userDbData = docSnapshot.data();
           console.log(userDbData);
           setUser({ ...userDbData });
+        console.log("user logged");
+          
         } catch (error) {
           console.log(error);
         }
