@@ -16,23 +16,27 @@ const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
         // todo: set add to Favorites logic (await)
         //Step 1: Check if user liked
         //1.1: fetch target match card
-        const docRef = doc(db, "Matches", "DZJDMKMMeflYRMLMRDRN");
+        const docRef = doc(db, "Matches", serviceId);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             //1.2: check at 'target' likes if user card exist
             console.log(docSnap.data().iliked);
 
             const likedOnes = docSnap.data().iliked
-            // console.log(docSnap.data());
-            // const likedOnes = docSnap.data().iLiked
-            // likedOnes.some((index) => {
-            //Step 2: if target liked:
-            //         console.log(index);
-            //     if (index === uid) {
-            //         console.log(true);
+            console.log(docSnap.data());
 
-            //     }
-            // }
+            likedOnes.some(async (index) => {
+                if (index === uid) {
+                    console.log('true');
+                    const docRef = doc(db, "Matches", serviceId);
+                    await updateDoc(docRef, {
+                        matches: arrayUnion(chosenService)
+                    });
+                    console.log('added to favorites');
+                } else {
+                    console.log('target dont like you');
+                }
+            })
 
         } else {
             console.log("No such document!");
@@ -54,7 +58,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
     }
 
     return (
-        <div className={styles.container} style={isPreview && { position: 'initial' }} onClick={() => selectAServiceHandler(serviceId)}>
+        <div className={styles.container} style={isPreview && { position: 'initial' }} onClick={() => isPreview && selectAServiceHandler(serviceId)}>
             <div className={styles.bgImg}></div>
             <div>
                 <img className={styles.profileImg} src="" alt="" />

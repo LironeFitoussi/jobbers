@@ -4,6 +4,7 @@ import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firesto
 import { db } from '../../config/firebase'
 import UserCard from '../../components/UserCard/UserCard'
 import { useNavigate } from 'react-router-dom'
+import styles from './MyServices.module.css'
 
 function MyServices() {
   const { user, setChosenService } = useContext(UserContext)
@@ -31,13 +32,11 @@ function MyServices() {
     navigate(`/find/${serviceId}`)
   }
   return (
-    <div>
+    <div className={styles.container}>
       {myServicesList.map((item) => {
         return <UserCard selectAServiceHandler={selectAServiceHandler} service={item} isPreview={true} />
       })}
-
       <button>add another</button>
-
       <button>use the selected service</button>
     </div>
   )
