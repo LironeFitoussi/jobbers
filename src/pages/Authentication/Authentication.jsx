@@ -24,7 +24,7 @@ function Authentication() {
 
     const submitLogin = async (e) => {
         e.preventDefault()
-        const logUser = await signInWithEmailAndPassword(auth, newUser.Email, newUser.Password)
+        const logUser = await signInWithEmailAndPassword(auth, newUser.email, newUser.password)
         console.log(logUser);
         console.log("user logged");
     }
@@ -33,11 +33,11 @@ function Authentication() {
         try {
             e.preventDefault()
             console.log(newUser);
-            createUserWithEmailAndPassword(auth, newUser.Email, newUser.Password)
+            createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
                 .then(async (userCred) => {
-                    const { Email, firstName, lastName, Phone, Age } = { ...newUser }
+                    const { email, firstName, lastName, phone, age } = { ...newUser }
                     console.log(userCred);
-                    await setDoc(doc(db, "Users", userCred.user.uid), { lastName, firstName, Email, Phone, Age, role: "User",uid:userCred.user.uid })
+                    await setDoc(doc(db, "Users", userCred.user.uid), { lastName, firstName, email, phone, age, role: "User",uid:userCred.user.uid })
                     console.log("user logged in");
                 })
         }

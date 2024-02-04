@@ -1,29 +1,21 @@
 import { useContext, useEffect, useState } from "react"
 import UserProvider from "../../context/User";
 import { UserContext } from "../../context/User";
-
-
 //TODO ON create of card, take current user details (fullName,phone)
 
-function CreatorForm(){
+function CreatorForm(props){
 
+    const { inputUpdater, timeUnit,setTimeUnit,submitForm} = props
     const {user} = useContext(UserContext)
     const [isProvider,setIsProvider] = useState(null)
-    const [formData,setFormData] = useState({})
-
-    
-    console.log(user);
 
     //? Info to put inside : user?.firstName, user?.lastName, user.Phone, user.Email, user.Age
 
     const validateType = (e) =>{
         if(e.target.value == "Freelancer"){
-            console.log(e.target.value);
-            console.log("If = Freelancer");
             setIsProvider(true)
         }
         else{
-            console.log("Else = Client");
             setIsProvider(false)
         }
     }
@@ -33,76 +25,78 @@ function CreatorForm(){
 
     return (
      <div>
-        <label htmlFor="selectType">ASDASDASD</label><br />
-        <select name="selectType" onChange={validateType}>
-            <option value={"Freelancer"} >Freelancer</option>
+        <label htmlFor="selectType">Freelancer Or Client ? : </label><br />
+        <select name="selectType"  onChange={validateType}>
             <option value={"Client"}>Client</option>
+            <option value={"Freelancer"} >Freelancer</option>
         </select>
         {isProvider ? 
-            <form action="" name="freelancerForm">
+            <form action="" name="freelancerForm" onSubmit={submitForm}>
                 <h1>This is the Client's form</h1>
                 <div>
-                    <label htmlFor="userFullName">Full name : </label>
-                    <input type="text" name="userFullName" disabled value={user?.firstName +" "+ user?.lastName}/>
+                    <label htmlFor="fullName">Full name : </label>
+                    <input type="text" name="fullName" onChange={inputUpdater} disabled value={`${user?.firstName} ${user?.lastName}`}/>
                 </div>
                 <div>
-                    <label htmlFor="userEmail">Email : </label>
-                    <input type="text" name="userEmail" disabled value={user?.Email}/>
+                    <label htmlFor="email">Email : </label>
+                    <input type="text" name="email" onChange={inputUpdater} disabled value={user?.email}/>
                 </div>
                 <div>
-                    <label htmlFor="userPhone">Phone number : </label>
-                    <input type="number" name="userPhone" disabled value={user?.Phone}/>
+                    <label htmlFor="phone">Phone number : </label>
+                    <input type="text" name="phone" onChange={inputUpdater} disabled value={user?.phone}/>
                 </div>
                 <div>
-                    <label htmlFor="userAge">Age : </label>
-                    <input type="text" name="userAge" disabled value={user?.Age}/>
+                    <label htmlFor="age">Age : </label>
+                    <input type="text" name="age" onChange={inputUpdater} disabled value={user?.age}/>
                 </div>
                 <div>
                     {/* TODO : Change to select */}
-                    <label htmlFor="Category">Category : </label>
-                    <input type="text" name="Category" />
+                    <label htmlFor="category">Category : </label>
+                    <input type="text" name="category" onChange={inputUpdater} />
                 </div>
                 <div>
-                    <label htmlFor="Description">Description : </label>
-                    <textarea name="Description" id="" cols="30" rows="10"></textarea>
+                    <label htmlFor="description">Description : </label>
+                    <textarea name="description" onChange={inputUpdater} id="" cols="30" rows="10"></textarea>
                 </div>
                 <div>
-                    <label htmlFor="Experience">Experience : </label>
-                    <input type="text" />
-                    <select name="" id="">
-                        <option value="Years" >Years</option>
-                        <option value="Months" >Months</option>
+                    <label htmlFor="experience">Experience : </label>
+                    <input type="number" onChange={inputUpdater} name="experience" />
+                    <select name="time" onChange={inputUpdater} >
+                        <option value=" years">Years</option>
+                        <option value=" months">Months</option>
                     </select>
                 </div>
+                <button type="submit" name="submitBtn">Submit Form</button>
             </form>
         :
-        <form action="" name="clientForm">
+        <form action="" name="clientForm" onSubmit={submitForm}>
             <h1>This is the Client's form</h1>
             <div>
-                <label htmlFor="userFullName">Full name : </label>
-                <input type="text" name="userFullName" disabled value={user?.firstName +" "+ user?.lastName}/>
+                <label htmlFor="fullName">Full name : </label>
+                <input type="text" name="fullName" onChange={inputUpdater} disabled value={user?.firstName +" "+ user?.lastName}/>
             </div>
             <div>
-                <label htmlFor="userEmail">Email : </label>
-                <input type="text" name="userEmail" disabled value={user?.Email}/>
+                <label htmlFor="email">Email : </label>
+                <input type="text" name="email" onChange={inputUpdater} disabled value={user?.email}/>
             </div>
             <div>
-                <label htmlFor="userPhone">Phone number : </label>
-                <input type="number" name="userPhone" disabled value={user?.phoneNumber}/>
+                <label htmlFor="phone">Phone number : </label>
+                <input type="text" name="phone" onChange={inputUpdater} disabled value={user?.phone}/>
             </div>
             <div>
-                <label htmlFor="userAge">Age : </label>
-                <input type="text" name="userAge" disabled value={user?.Age}/>
+                <label htmlFor="age">Age : </label>
+                <input type="text" name="age" onChange={inputUpdater} disabled value={user?.age}/>
             </div>
             <div>
                 {/* TODO : Change to select (when we know the options.) */}
-                <label htmlFor="Category">Category : </label>
-                <input type="text" name="Category" />
+                <label htmlFor="category">Category : </label>
+                <input type="text" name="category" onChange={inputUpdater} />
             </div>
             <div>
-                <label htmlFor="Description">Description : </label>
-                <textarea name="Description" id="" cols="30" rows="10"></textarea>
+                <label htmlFor="description">Description : </label>
+                <textarea name="description" onChange={inputUpdater} id="" cols="30" rows="10"></textarea>
             </div>
+            <button type="submit">Submit Form</button>
         </form>
         }
     </div>

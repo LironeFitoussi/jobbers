@@ -10,10 +10,10 @@ function Login(props){
             <>
                 <h1>Login</h1>
                 <form name="loginForm" onSubmit={submitLogin}>
-                    <label htmlFor="Email">Email Address : </label> <br />
-                    <input type="text" name="Email" onChange={inputInfo}/><br></br>
-                    <label htmlFor="Password">Password : </label><br />
-                    <input type="password" name="Password" onChange={inputInfo} /><br></br><br />
+                    <label htmlFor="email">Email Address : </label> <br />
+                    <input type="text" name="email" onChange={inputInfo}/><br></br>
+                    <label htmlFor="password">Password : </label><br />
+                    <input type="password" name="password" onChange={inputInfo} /><br></br><br />
                     <button type="submit" className="submitAuth" >Submit</button><br />
                 </form>
             </>
