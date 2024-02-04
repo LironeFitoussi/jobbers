@@ -4,8 +4,9 @@ import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firesto
 import { db } from '../../config/firebase'
 import UserCard from '../../components/UserCard/UserCard'
 function MyServices() {
-    const  {user} = useContext(UserContext)
+    const  {user,setChosenService} = useContext(UserContext)
     const [myServicesList,setMyServicesList]=useState([])
+    
   const getUserServices= async()=>{
     
  try {
@@ -21,12 +22,20 @@ function MyServices() {
   useEffect(()=>{
     getUserServices()
 },[user])
+    const selectAServiceHandler=(serviceId)=>{
+      setChosenService(serviceId)
+      console.log(serviceId);
+    }
   return (
 
     <div>
       {myServicesList.map((item)=>{
-        return <UserCard service={item} isPreview={true}/>
+        return <UserCard selectAServiceHandler={selectAServiceHandler} service={item} isPreview={true}/>
       })}
+
+      <button>add another</button>
+
+      <button>use the selected service</button>
     </div>
   )
 }
