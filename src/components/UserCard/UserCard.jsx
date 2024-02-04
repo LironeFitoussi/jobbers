@@ -54,7 +54,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
     }
 
     return (
-        <div className={styles.container} style={isPreview && { position: 'none' }} onClick={() => selectAServiceHandler(serviceId)}>
+        <div className={styles.container} style={isPreview && { position: 'initial' }} onClick={() => selectAServiceHandler(serviceId)}>
             <div className={styles.bgImg}></div>
             <div>
                 <img className={styles.profileImg} src="" alt="" />
