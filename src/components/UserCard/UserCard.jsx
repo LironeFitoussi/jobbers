@@ -3,7 +3,7 @@ import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from '../../config/firebase';
 import { useContext } from 'react';
 import { UserContext } from '../../context/User';
-const UserCard = ({ service, isPreview }) => {
+const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
     const { serviceId, category, desc, fName, lName, age, type, experince, uid } = service
     const { chosenService } = useContext(UserContext)
     const nextCard = () => {
@@ -29,10 +29,7 @@ const UserCard = ({ service, isPreview }) => {
             if (whereIsLiked == -1) {
                 likedList.push(chosenService)
                 await updateDoc(docRef, { iliked: likedList });
-
-
-            }
-            else {
+            } else {
                 likedList.splice(whereIsLiked, 1);
                 matchedList.push(chosenService)
                 await updateDoc(docRef, { matches: matchedList, iliked: likedList })
@@ -79,7 +76,7 @@ const UserCard = ({ service, isPreview }) => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} style={isPreview && { position: 'initial' }} onClick={() => isPreview && selectAServiceHandler(serviceId)}>
             <div className={styles.bgImg}></div>
             <div>
                 <img className={styles.profileImg} src="" alt="" />
