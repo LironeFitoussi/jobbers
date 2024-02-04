@@ -16,22 +16,42 @@ function App() {
   const { user } = useContext(UserContext)
   console.log(user);
   return (
-    <BrowserRouter>
-      <Header />
-      {user ? <Routes>
-        <Route path="/" element={<MyServices />} />
-        <Route path="/find/:id" element={<Find />} />
-        <Route path="/matches" element={<Matches />} />
-        <Route path="/creator" element={<CardCreator />} />
-        <Route path="/myServices" element={<MyServices />} />
-        {/* <Route path='/settigns' element={< Settings />} /> */}
-      </Routes> :
-        <Routes>
-          <Route path="/" element={<Authentification />} />
-        </Routes>}
-      <Navbar />
-    </BrowserRouter>
-  );
-}
-
-export default App;
+    <BrowserRouter> 
+      <Header /> 
+      {user?.role=="Admin"? <Routes>
+      <Route path="/" element={<MyServices isAdmin={true} />} />
+      </Routes>:null}
+      
+    {user?.role=="User"? <Routes>
+      <Route path="/" element={<MyServices />} />
+      <Route path="/find/:id" element={<Find />} />
+      <Route path="/matches" element={<Matches />} />
+      <Route path="/creator" element={<CardCreator />} />
+      <Route path="/myServices" element={<MyServices />} />
+    </Routes> :
+    <Routes>
+      <Route path="/" element={<Authentification />} />
+    </Routes>}
+  
+  <Navbar />
+</BrowserRouter>
+    );
+  }
+  
+  
+  export default App;
+  
+  // <BrowserRouter>
+  //   <Header />
+  //   {user ? <Routes>
+  //     <Route path="/" element={<MyServices />} />
+  //     <Route path="/find/:id" element={<Find />} />
+  //     <Route path="/matches" element={<Matches />} />
+  //     <Route path="/creator" element={<CardCreator />} />
+  //     {/* <Route path="/myServices" element={<MyServices />} /> */}
+  //   </Routes> :
+  //     <Routes>
+  //       <Route path="/" element={<Authentification />} />
+  //     </Routes>}
+  //   <Navbar />
+  // </BrowserRouter>
