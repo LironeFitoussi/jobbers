@@ -5,12 +5,13 @@ import SignUp from '../../components/Authentication/SignUp';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, onSnapshot, setDoc, doc, getDoc, getDocs, deleteDoc } from 'firebase/firestore'
 import { UserContext } from '../../context/User'
+import { useNavigate } from 'react-router-dom';
 
 
 function Authentication() {
-
     const { user, setUser, setUserFromDb, signOutHandler } = useContext(UserContext)
-
+    
+    const navigate = useNavigate()
     const [newUser, setNewUser] = useState({})
     const [isRegistered, setIsRegistered] = useState(true)
 
@@ -41,10 +42,11 @@ function Authentication() {
                     console.log("user logged in");
                     // Todo: navigarte to create
                 })
-        }
-        catch (err) {
-            console.error(err);
-        }
+            }
+            catch (err) {
+                console.error(err);
+            }
+        navigate("/creator")
     }
 
     const toggleType = () => {

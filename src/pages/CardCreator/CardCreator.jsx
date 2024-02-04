@@ -4,10 +4,10 @@ import UserProvider from "../../context/User";
 import { UserContext } from "../../context/User";
 import { db, auth } from '../../config/firebase'
 import { collection, addDoc, onSnapshot, setDoc, doc, getDoc, getDocs, deleteDoc } from 'firebase/firestore'
-
+import { useNavigate } from "react-router-dom";
 
 function CardCreator(){
-
+    const navigate = useNavigate()
     const [currData,setCurrData] = useState({})
     const [timeUnit,setTimeUnit] = useState(null)
     const {user} = useContext(UserContext)
@@ -42,6 +42,7 @@ function CardCreator(){
             })
             console.log(addedService);
             console.log(addedMatching);
+            navigate("/myServices")
         }
         catch(err){
             console.error(err);
