@@ -1,8 +1,9 @@
 import styles from './UserCard.module.css'
-const UserCard = ({ service }) => {
-    const { category, desc, fName, lName, age, type, experince } = service
-    console.log(service);
+import { collection, doc, getDoc } from "firebase/firestore";
 
+const UserCard = ({ service }) => {
+    const { id, category, desc, fName, lName, age, type, experince, uid } = service
+    console.log(service);
     const nextCard = () => {
         // todo: set next card logic   
         console.log('next card');
@@ -11,7 +12,19 @@ const UserCard = ({ service }) => {
     const addToWanted = async () => {
         console.log('i want  him');
         // todo: set add to Favorites logic (await)
+        let userQuery = query(
+            collection(db, 'Matches'),
+            where()
+        );
 
+        // const docRef = doc(db, "cities", );
+        // const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+        } else {
+            console.log("No such document!");
+        }
         nextCard();
     }
 
