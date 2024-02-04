@@ -54,7 +54,6 @@ function Authentication() {
         setIsRegistered(!isRegistered)
     }
 
-
     return (
         <>
             {user ? <div>
@@ -63,17 +62,11 @@ function Authentication() {
                 <button onClick={signOutHandler}>Sign out</button>
             </div> : <div className={styles.authDiv}>
                 {isRegistered ? <LogIn inputInfo={inputInfo} submitLogin={submitLogin} /> : <SignUp inputInfo={inputInfo} submitSignUp={submitSignUp} />}
-                <br /><h3>Don't have an account? <span onClick={toggleType}>{isRegistered ? "Click here to Sign Up" : "Click here to Log In"}</span> </h3>
+                <br /><h3>{isRegistered ? "Still don't have an account?" : "Already a Member?"}<span onClick={toggleType}>{isRegistered ? "Sign Up" : "Log In"}</span> </h3>
             </div>}
 
         </>
     )
-
-
-
-
-
-
 
     return (
         <>
