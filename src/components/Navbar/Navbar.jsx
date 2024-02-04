@@ -13,7 +13,7 @@ export default function Navbar() {
                     {user ? (
                         <button className={styles.logOutBtn} onClick={signOutHandler}><img className={styles.logOut} src="https://static-00.iconduck.com/assets.00/logout-icon-2048x2048-libuexip.png" alt="" /></button>
                     ) : (
-                        <Link to="/auth">Login</Link>
+                        <Link to="/"><img className={styles.loginLogo} src="https://cdn.iconscout.com/icon/free/png-256/free-login-2840150-2359419.png" alt="" /></Link>
                     )}
                 </li>
                 <li className={styles.li}>

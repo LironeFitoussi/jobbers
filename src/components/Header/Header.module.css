@@ -1,0 +1,13 @@
+header img {
+    width: 50vw;
+    filter: drop-shadow(2px 2px 4px #747474e4);
+    margin: 1rem;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}

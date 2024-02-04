@@ -8,6 +8,8 @@ import Matches from "./pages/Matches/Matches.jsx";
 import CardCreator from "./pages/CardCreator/CardCreator.jsx";
 import MyServices from "./pages/MyServices/MyServices.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
+import Header from "./components/Header/Header.jsx";
+
 import { useContext } from "react";
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
   console.log(user);
   return (
     <BrowserRouter>
+      <Header />
       {user ? <Routes>
         <Route path="/" element={<MyServices />} />
         <Route path="/find/:id" element={<Find />} />

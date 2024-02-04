@@ -1,6 +1,6 @@
 .navbarContainer {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
     padding: 2rem 0rem;
     background-color: #ffffff;
@@ -11,11 +11,15 @@
 }
 
 .navbar {
+    border-top: 1px solid #000;
     list-style: none;
     display: flex;
+    justify-content: space-around;
+    width: 100%;
     margin: 0;
     padding: 0;
     gap: 3vw;
+    padding-top: 2vh;
 }
 
 .logo>* {
@@ -75,25 +79,21 @@
 
 .homeIcon {
     width: 5vw;
-    border: solid 1px #000;
-    padding: 20%;
-    border-radius: 5rem;
 }
 
 .matchesIcon {
-    width: 7.5vw;
-    border: solid 1px #000;
-    border-radius: 5rem;
+    width: 10vw;
 }
 
 .logOut {
     width: 5vw;
-    border: solid 1px #000;
-    padding: 20%;
-    border-radius: 5rem;
 }
 
 .logOutBtn {
     background-color: transparent;
     border: none;
+}
+
+.loginLogo {
+    width: 10vw;
 }

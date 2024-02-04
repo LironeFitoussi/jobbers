@@ -5,7 +5,7 @@ import SignUp from '../../components/Authentication/SignUp';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, onSnapshot, setDoc, doc, getDoc, getDocs, deleteDoc } from 'firebase/firestore'
 import { UserContext } from '../../context/User'
-
+import styles from './Authentication.module.css'
 
 function Authentication() {
 
@@ -58,7 +58,7 @@ function Authentication() {
                 Hello user
 
                 <button onClick={signOutHandler}>Sign out</button>
-            </div> : <div className='authDiv'>
+            </div> : <div className={styles.authDiv}>
                 {isRegistered ? <LogIn inputInfo={inputInfo} submitLogin={submitLogin} /> : <SignUp inputInfo={inputInfo} submitSignUp={submitSignUp} />}
                 <br /><h3>Don't have an account? <span onClick={toggleType}>{isRegistered ? "Click here to Sign Up" : "Click here to Log In"}</span> </h3>
             </div>}
