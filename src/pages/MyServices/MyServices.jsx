@@ -6,7 +6,7 @@ import UserCard from '../../components/UserCard/UserCard'
 import { useNavigate } from 'react-router-dom'
 import styles from './MyServices.module.css'
 
-function MyServices() {
+function MyServices({isAdmin}) {
   const { user, setChosenService } = useContext(UserContext)
   const [myServicesList, setMyServicesList] = useState([])
   const navigate = useNavigate()
@@ -22,8 +22,28 @@ function MyServices() {
     }
   }
 
+  const getAdminServices = async()=>{
+    try {
+      const collectionRef=collection(db,'Services')
+      const snapshot = await getDocs(collectionRef);
+      const tempList = []
+      snapshot.docs.map(doc => tempList.push({ ...doc.data(), id: doc.id }));
+      console.log(tempList);
+      setMyServicesList(tempList);
+    } catch (error) {
+      
+    }
+  }
   useEffect(() => {
+   if(isAdmin){
+    console.log("its admin");
+    // getAdminServices()
+   }
+   else{
+    console.log("its user");
     getUserServices()
+   }
+    
   }, [user])
 
   const selectAServiceHandler = (serviceId) => {
