@@ -1,9 +1,11 @@
 import styles from './UserCard.module.css'
 import { collection, doc, getDoc } from "firebase/firestore";
 import { db } from '../../config/firebase';
+import { useContext } from 'react';
+import { UserContext } from '../../context/User';
 const UserCard = ({ service, isPreview }) => {
     const { serviceId, category, desc, fName, lName, age, type, experince, uid } = service
-    console.log(service);
+    const {chosenService}=useContext(UserContext)
     const nextCard = () => {
         // todo: set next card logic   
         console.log('next card');
@@ -14,23 +16,24 @@ const UserCard = ({ service, isPreview }) => {
         // todo: set add to Favorites logic (await)
         //Step 1: Check if user liked
         //1.1: fetch target match card
-        console.log(serviceId);
         const docRef = doc(db, "Matches", serviceId);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
             //1.2: check at 'target' likes if user card exist
+            console.log(docSnap.data().iliked);
 
-            const likedOnes = docSnap.data().iLiked
-            likedOnes.some((index) => {
+            const likedOnes =docSnap.data().iliked
+            // console.log(docSnap.data());
+            // const likedOnes = docSnap.data().iLiked
+            // likedOnes.some((index) => {
                 //Step 2: if target liked:
+            //         console.log(index);
+            //     if (index === uid) {
+            //         console.log(true);
 
-                if (index === uid) {
-                    console.log(true);
-
-                }
-            }
-            );
+            //     }
+            // }
 
         } else {
             console.log("No such document!");

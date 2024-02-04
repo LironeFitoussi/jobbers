@@ -7,7 +7,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 export const UserContext = createContext({});
 
 export default function UserProvider({ children }) {
-  const [chosenService,setChosenService]=useState()
+  const [chosenService,setChosenService]=useState("DZJDMKMMeflYRMLMRDRN")
   const [user, setUser] = useState();
   const signOutHandler = () => {
     signOut(auth)
@@ -25,12 +25,10 @@ export default function UserProvider({ children }) {
   const onUserChange = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        console.log(user);
         const userRef = doc(db, "Users", user.uid);
         try {
           const docSnapshot = await getDoc(userRef);
           const userDbData = docSnapshot.data();
-          console.log(userDbData);
           setUser({ ...userDbData });
         console.log("user logged");
           
@@ -43,7 +41,6 @@ export default function UserProvider({ children }) {
     });
   };
   const setUserFromDb = async (user) => {
-    console.log(user.uid);
     const userRef = doc(db, "Users", user.uid);
     try {
       const docSnapshot = await getDoc(userRef);
@@ -53,7 +50,7 @@ export default function UserProvider({ children }) {
       console.log(error);
     }
   };
-  
+
   const shared = { user, setUser, setUserFromDb, signOutHandler,chosenService , setChosenService};
   return <UserContext.Provider value={shared}>{children}</UserContext.Provider>;
 }
