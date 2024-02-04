@@ -35,10 +35,11 @@ function Authentication() {
             console.log(newUser);
             createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
                 .then(async (userCred) => {
-                    const { email, fName , lName, phone, age } = { ...newUser }
+                    const { email, fName, lName, phone, age } = { ...newUser }
                     console.log(userCred);
-                    await setDoc(doc(db, "Users", userCred.user.uid), { fName, lName, email, phone, age, role: "User",uid:userCred.user.uid })
+                    await setDoc(doc(db, "Users", userCred.user.uid), { fName, lName, email, phone, age, role: "User", uid: userCred.user.uid })
                     console.log("user logged in");
+                    // Todo: navigarte to create
                 })
         }
         catch (err) {

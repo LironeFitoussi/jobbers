@@ -3,9 +3,9 @@ import { collection, doc, getDoc } from "firebase/firestore";
 import { db } from '../../config/firebase';
 import { useContext } from 'react';
 import { UserContext } from '../../context/User';
-const UserCard = ({ service, isPreview }) => {
-    const { serviceId, category, desc, fName, lName, age, type, experince, uid } = service
-    const {chosenService}=useContext(UserContext)
+const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
+    const { serviceId, category, description, fName, lName, age, type, experince, uid } = service
+    const { chosenService } = useContext(UserContext)
     const nextCard = () => {
         // todo: set next card logic   
         console.log('next card');
@@ -23,11 +23,11 @@ const UserCard = ({ service, isPreview }) => {
             //1.2: check at 'target' likes if user card exist
             console.log(docSnap.data().iliked);
 
-            const likedOnes =docSnap.data().iliked
+            const likedOnes = docSnap.data().iliked
             // console.log(docSnap.data());
             // const likedOnes = docSnap.data().iLiked
             // likedOnes.some((index) => {
-                //Step 2: if target liked:
+            //Step 2: if target liked:
             //         console.log(index);
             //     if (index === uid) {
             //         console.log(true);
@@ -55,7 +55,7 @@ const UserCard = ({ service, isPreview }) => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} style={isPreview && { position: 'none' }} onClick={() => selectAServiceHandler(serviceId)}>
             <div className={styles.bgImg}></div>
             <div>
                 <img className={styles.profileImg} src="" alt="" />
@@ -64,9 +64,10 @@ const UserCard = ({ service, isPreview }) => {
                     <p>{category}</p>
                     <div div >
                         {type === 'freelancer' && <p>EXPERirnce: {experince}</p>}
-                        <p>About Me: {desc}</p>
+                        <p>About Me: {description}</p>
                     </div>
                 </div>
+
                 {!isPreview && (
                     <section>
                         <button onClick={addToWanted}>||LIKE</button>

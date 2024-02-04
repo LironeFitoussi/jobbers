@@ -1,4 +1,4 @@
-import {doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../config/firebase";
 import { useEffect, useState } from "react";
 import { createContext } from "react";
@@ -7,7 +7,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 export const UserContext = createContext({});
 
 export default function UserProvider({ children }) {
-  const [chosenService,setChosenService]=useState("DZJDMKMMeflYRMLMRDRN")
+  const [chosenService, setChosenService] = useState("DZJDMKMMeflYRMLMRDRN")
   const [user, setUser] = useState();
   const signOutHandler = () => {
     signOut(auth)
@@ -30,8 +30,8 @@ export default function UserProvider({ children }) {
           const docSnapshot = await getDoc(userRef);
           const userDbData = docSnapshot.data();
           setUser({ ...userDbData });
-        console.log("user logged");
-          
+          console.log("user logged");
+
         } catch (error) {
           console.log(error);
         }
@@ -45,12 +45,12 @@ export default function UserProvider({ children }) {
     try {
       const docSnapshot = await getDoc(userRef);
       const userDbData = docSnapshot.data();
-      setUser({ ...userDbData});
+      setUser({ ...userDbData });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const shared = { user, setUser, setUserFromDb, signOutHandler,chosenService , setChosenService};
+  const shared = { user, setUser, setUserFromDb, signOutHandler, chosenService, setChosenService };
   return <UserContext.Provider value={shared}>{children}</UserContext.Provider>;
 }
