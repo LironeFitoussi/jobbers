@@ -24,7 +24,7 @@ export default function UserProvider({ children }) {
   const onUserChange = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userRef = doc(db, "users", user.uid);
+        const userRef = doc(db, "Users", user.uid);
         try {
           const docSnapshot = await getDoc(userRef);
           const userDbData = docSnapshot.data();
@@ -40,7 +40,7 @@ export default function UserProvider({ children }) {
   };
   const setUserFromDb = async (user) => {
     console.log(user.uid);
-    const userRef = doc(db, "users", user.uid);
+    const userRef = doc(db, "Users", user.uid);
     try {
       const docSnapshot = await getDoc(userRef);
       const userDbData = docSnapshot.data();

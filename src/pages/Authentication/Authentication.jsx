@@ -4,12 +4,13 @@ import LogIn from '../../components/Authentication/LogIn';
 import SignUp from '../../components/Authentication/SignUp';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword   } from "firebase/auth";
 import {collection , addDoc, onSnapshot, setDoc , doc, getDoc, getDocs , deleteDoc} from 'firebase/firestore'
-
+import UserContext from '../../context/User'
 
 
 function Authentication(){
 
-    // const [user,setUser] = useState({})
+    // const {user, setUser, setUserFromDb, signOutHandler} = useContext(UserContext)
+    
     const [newUser,setNewUser] = useState({})
     const [isRegistered, setIsRegistered] = useState(true)
 
@@ -31,7 +32,6 @@ function Authentication(){
 
     const submitSignUp = async(e) =>{
         try{
-
             e.preventDefault()
             console.log(newUser);
             const registerUser = await createUserWithEmailAndPassword(auth,newUser.Email,newUser.Password)
