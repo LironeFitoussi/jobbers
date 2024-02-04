@@ -3,8 +3,8 @@ import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from '../../config/firebase';
 import { useContext } from 'react';
 import { UserContext } from '../../context/User';
-const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
-    const { serviceId, category, description, fName, lName, age, type, experince, uid } = service
+const UserCard = ({ service, isPreview }) => {
+    const { serviceId, category, desc, fName, lName, age, type, experince, uid } = service
     const { chosenService } = useContext(UserContext)
     const nextCard = () => {
         // todo: set next card logic   
@@ -22,8 +22,29 @@ const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
             //1.2: check at 'target' likes if user card exist
             console.log(docSnap.data().iliked);
 
-            const likedOnes = docSnap.data().iliked
-            console.log(docSnap.data());
+            const likedList = docSnap.data().iliked
+            const matchedList = docSnap.data().matches
+            const whereIsLiked = likedList.indexOf(chosenService)
+            // query to check if A liked B and B liked A
+            if (whereIsLiked == -1) {
+                likedList.push(chosenService)
+                await updateDoc(docRef, { iliked: likedList });
+
+
+            }
+            else {
+                likedList.splice(whereIsLiked, 1);
+                matchedList.push(chosenService)
+                await updateDoc(docRef, { matches: matchedList, iliked: likedList })
+                console.log("already exist");
+            }
+            // console.log(docSnap.data());
+            // const likedOnes = docSnap.data().iLiked
+            // likedOnes.some((index) => {
+            //Step 2: if target liked:
+            //         console.log(index);
+            //     if (index === uid) {
+            //         console.log(true);
 
             likedOnes.some(async (index) => {
                 if (index === uid) {
@@ -58,7 +79,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
     }
 
     return (
-        <div className={styles.container} style={isPreview && { position: 'initial' }} onClick={() => isPreview && selectAServiceHandler(serviceId)}>
+        <div className={styles.container}>
             <div className={styles.bgImg}></div>
             <div>
                 <img className={styles.profileImg} src="" alt="" />
@@ -67,10 +88,9 @@ const UserCard = ({ service, isPreview, selectAServiceHandler }) => {
                     <p>{category}</p>
                     <div div >
                         {type === 'freelancer' && <p>EXPERirnce: {experince}</p>}
-                        <p>About Me: {description}</p>
+                        <p>About Me: {desc}</p>
                     </div>
                 </div>
-
                 {!isPreview && (
                     <section>
                         <button onClick={addToWanted}>||LIKE</button>
