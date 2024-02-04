@@ -1,6 +1,7 @@
 import styles from './UserCard.module.css'
-const UserCard = () => {
-
+const UserCard = ({ service }) => {
+    const { category, desc, fName, lName, age, type, experince } = service
+    console.log(service);
     const nextCard = () => {
         // todo: set next card logic   
         console.log('next card');
@@ -26,11 +27,11 @@ const UserCard = () => {
             <div>
                 <img className={styles.profileImg} src="" alt="" />
                 <div className={styles.cardHeader}>
-                    <h1>||USERNAME <span>||AGE</span></h1>
-                    <p>||PROFFESION</p>
-                    <div>
-                        <p>EXPERirnce: ||XP</p>
-                        <p>ABOT: ||about</p>
+                    <h1>{fName + ' ' + lName} <span>{age}</span></h1>
+                    <p>{category}</p>
+                    < div >
+                        {type === 'freelancer' && <p>EXPERirnce: {experince}</p>}
+                        <p>About Me: {desc}</p>
                     </div>
                 </div>
                 <section>
@@ -38,7 +39,7 @@ const UserCard = () => {
                     <button onClick={addToUnwanted}>||DISLIKE</button>
                 </section>
             </div>
-        </div>
+        </div >
     )
 }
 
