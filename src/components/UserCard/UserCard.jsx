@@ -1,7 +1,7 @@
 import styles from './UserCard.module.css'
 import { collection, doc, getDoc } from "firebase/firestore";
 
-const UserCard = ({ service }) => {
+const UserCard = ({ service, isPreview }) => {
     const { id, category, desc, fName, lName, age, type, experince, uid } = service
     console.log(service);
     const nextCard = () => {
