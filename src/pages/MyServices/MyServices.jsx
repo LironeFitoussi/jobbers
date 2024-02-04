@@ -9,10 +9,8 @@ function MyServices() {
   const getUserServices= async()=>{
     
  try {
-    console.log(user.uid);
     const q = query(collection(db, 'Services'), where('uid', '==', user?.uid));
     const snapshot = await getDocs(q);
-    console.log(snapshot.docs);
     const tempList=[]
    snapshot.docs.map(doc => tempList.push({...doc.data() , serviceId:doc.id}));    
    setMyServicesList(tempList);
