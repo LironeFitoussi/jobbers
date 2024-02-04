@@ -66,9 +66,19 @@ function CreatorForm(props){
                     <input type="text" name="age" disabled value={user?.age}/>
                 </div>
                 <div>
-                    {/* TODO : Change to select */}
-                    <label htmlFor="category">Category : </label>
-                    <input type="text" name="category" onChange={inputUpdater} />
+                    <select name="category" id="" onChange={inputUpdater}>
+                        <option value="" disabled>Pick the Category : </option>
+                        <option value="Graphics-And-Designs">Graphics & Design</option>
+                        <option value="Programming-And-Tech">Programming & Tech</option>
+                        <option value="Digital-Marketing">Digital Marketing</option>
+                        <option value="Video-And-Animation">Video & Animations</option>
+                        <option value="Writing-And-Translation">Writing & Translation</option>
+                        <option value="Music-And-Audio">Music & Audio</option>
+                        <option value="Business">Business</option>
+                        <option value="Consulting">Consulting</option>
+                    </select>
+                    {/* <label htmlFor="category">Category : </label>
+                    <input type="text" name="category" onChange={inputUpdater} /> */}
                 </div>
                 <div>
                     <label htmlFor="description">Description : </label>

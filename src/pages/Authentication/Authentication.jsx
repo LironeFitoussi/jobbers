@@ -29,6 +29,7 @@ function Authentication() {
         const logUser = await signInWithEmailAndPassword(auth, newUser.email, newUser.password)
         console.log(logUser);
         console.log("user logged");
+        navigate("/myServices")
     }
 
     const submitSignUp = async (e) => {
