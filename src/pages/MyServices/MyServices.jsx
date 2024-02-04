@@ -33,8 +33,8 @@ function MyServices() {
   }
   return (
     <div className={styles.container}>
-      {myServicesList.map((item) => {
-        return <UserCard selectAServiceHandler={selectAServiceHandler} service={item} isPreview={true} />
+      {myServicesList.map((item, index) => {
+        return <UserCard selectAServiceHandler={selectAServiceHandler} key={index} service={item} isPreview={true} />
       })}
       <button>add another</button>
       <button>use the selected service</button>
