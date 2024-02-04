@@ -7,6 +7,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 export const UserContext = createContext({});
 
 export default function UserProvider({ children }) {
+  const [chosenService,setChosenService]=useState()
   const [user, setUser] = useState();
   const signOutHandler = () => {
     signOut(auth)
@@ -49,6 +50,6 @@ export default function UserProvider({ children }) {
       console.log(error);
     }
   };
-  const shared = { user, setUser, setUserFromDb, signOutHandler };
+  const shared = { user, setUser, setUserFromDb, signOutHandler,chosenService , setChosenService};
   return <UserContext.Provider value={shared}>{children}</UserContext.Provider>;
 }
