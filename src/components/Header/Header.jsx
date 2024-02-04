@@ -5,7 +5,7 @@ export default function Header() {
     const navigate = useNavigate();
 
     return (
-        <header>
+        <header className={styles.mainHeader}>
             <img src="/assets/images/Asset_1.png" alt="" onClick={() => navigate("/")} />
         </header>
     )
