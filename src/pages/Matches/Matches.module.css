@@ -1,0 +1,36 @@
+.match {
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2vw;
+    margin: 0 2rem;
+    padding: 2rem;
+    justify-content: space-between;
+}
+
+.matchContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.match button {
+    background-color: transparent;
+    border: none;
+}
+
+.match button img {
+    width: 10vw;
+    height: 10vw;
+}
+
+.match button img:hover {
+    cursor: pointer;
+}
+
+.match img {
+    width: 15vw;
+    height: 15vw;
+    border-radius: 1rem;
+}
