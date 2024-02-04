@@ -11,16 +11,16 @@ export default function Navbar() {
             <ul className={styles.navbar}>
                 <li className={styles.li}>
                     {user ? (
-                        <button onClick={signOutHandler}>Sign Out</button>
+                        <button className={styles.logOutBtn} onClick={signOutHandler}><img className={styles.logOut} src="https://static-00.iconduck.com/assets.00/logout-icon-2048x2048-libuexip.png" alt="" /></button>
                     ) : (
                         <Link to="/auth">Login</Link>
                     )}
                 </li>
                 <li className={styles.li}>
-                    <Link to="/">Home</Link>
+                    <Link to="/"><img className={styles.homeIcon} src="https://cdn.icon-icons.com/icons2/2248/PNG/512/cards_icon_138799.png" alt="cards" /></Link>
                 </li>
                 <li className={styles.li}>
-                    <Link to="/matches">matches</Link>
+                    <Link to="/matches"><img className={styles.matchesIcon} src="https://www.freeiconspng.com/thumbs/handshake-icon/black-handshake-icon-20.png" alt="" /></Link>
                 </li>
             </ul>
         </nav>
