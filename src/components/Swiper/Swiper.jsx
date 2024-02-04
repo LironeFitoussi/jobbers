@@ -6,22 +6,21 @@ import styles from './Swiper.module.css';
 
 const Swiper = ({ userType }) => {
     const [servicesArr, setServicesArr] = useState([]);
-
+    console.log(userType);
     useEffect(() => {
         const fetchServices = async () => {
+            console.log(userType);
             try {
                 let serviceQuery;
                 if (userType === 'Client') {
                     serviceQuery = query(
                         collection(db, 'Services'),
-                        where('category', '==', 'Photographer'),
                         where('isActive', '==', true),
                         where('type', '==', 'Freelancer'),
                     );
                 } else if (userType === 'Freelancer') {
                     serviceQuery = query(
                         collection(db, 'Services'),
-                        where('category', '==', 'Photographer'),
                         where('isActive', '==', true),
                         where('type', '==', 'Client'),
                     );
@@ -51,7 +50,7 @@ const Swiper = ({ userType }) => {
     return (
         <div className={styles.container}>
             {servicesArr.length > 0 ? servicesArr.map((service, index) => (
-                <UserCard key={index} service={service} />
+                <UserCard key={index} service={service} isSwiper={true} />
             )) : <p>No Data Available</p>}
         </div>
     );
