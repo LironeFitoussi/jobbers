@@ -24,9 +24,7 @@ export default function Find() {
   return (
     <section>
       <header className={styles.findPageHeader}>
-        <h1>
-          This is <b>Home</b> Page
-        </h1>
+
         <Swiper userType={serviceData?.type} />
       </header>
     </section>

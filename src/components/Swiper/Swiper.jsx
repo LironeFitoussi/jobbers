@@ -53,7 +53,7 @@ const Swiper = ({ userType }) => {
               matchesSnapshot = matchesSnapshot.data();
               forbiddenIds.push(
                 ...(matchesSnapshot.matches || []),
-                ...(matchesSnapshot.dislike || []),
+                ...(matchesSnapshot.disLike || []),
                 ...(matchesSnapshot.iLiked || [])
               );
 
