@@ -82,32 +82,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler,isSwiper }) => {
 
 
 
-    // const docRef = doc(db, "Matches", serviceId);
-    // const docSnap = await getDoc(docRef);
-    // if (docSnap.exists()) {
-    //   //1.2: check at 'target' likes if user card exist
-    //   console.log(docSnap.data().iliked);
-
-    //   const likedList = docSnap.data().iliked;
-    //   const matchedList = docSnap.data().matches;
-    //   const whereIsLiked = likedList.indexOf(chosenService);
-    //   // query to check if A liked B and B liked A
-    //   if (whereIsLiked == -1) {
-    //     likedList.push(chosenService);
-    //     await updateDoc(docRef, { iliked: likedList });
-    //   } else {
-    //     likedList.splice(whereIsLiked, 1);
-    //     matchedList.push(chosenService);
-    //     await updateDoc(docRef, { matches: matchedList, iliked: likedList });
-    //     console.log("already exist");
-    //   }
-    // }
-
-    //2.1: set arrayUnion to matches and add uid
-    //2.2: remove uid from likes array
-
-    //Step 3: if user didn't liked:
-    //3.1:  add to 'user' liked
+ 
   };
 
   const addToUnwanted = async () => {
@@ -128,7 +103,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler,isSwiper }) => {
           background:"none",height:"30vh"
         }
       }
-      onClick={() => isPreview && selectAServiceHandler(serviceId)}>
+      onClick={() => isPreview && selectAServiceHandler(id)}>
       <div className={styles.bgImg}></div>
       <div>
         <img className={styles.profileImg} src="" alt="" />

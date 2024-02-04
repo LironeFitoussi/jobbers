@@ -15,7 +15,7 @@ function MyServices() {
       const q = query(collection(db, 'Services'), where('uid', '==', user?.uid));
       const snapshot = await getDocs(q);
       const tempList = []
-      snapshot.docs.map(doc => tempList.push({ ...doc.data(), serviceId: doc.id }));
+      snapshot.docs.map(doc => tempList.push({ ...doc.data(), id: doc.id }));
       setMyServicesList(tempList);
     } catch (error) {
       console.log(error);
