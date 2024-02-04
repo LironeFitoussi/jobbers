@@ -7,7 +7,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 export const UserContext = createContext({});
 
 export default function UserProvider({ children }) {
-  const [chosenService, setChosenService] = useState("Example")
+  const [chosenService, setChosenService] = useState()
   const [user, setUser] = useState();
   const signOutHandler = () => {
     signOut(auth)

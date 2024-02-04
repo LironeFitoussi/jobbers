@@ -6,9 +6,11 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 export default function Find() {
+  
   const [serviceData, SetServiceData] = useState();
   const { id } = useParams();
-
+  const {setChosenService}=useContext(UserContext)
+  setChosenService(id)
   const getServiceType = async () => {
     const snapshot = await getDoc(doc(db, "Services", id));
     console.log();
