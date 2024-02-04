@@ -34,11 +34,10 @@ function CardCreator(){
                 uid:user.uid,
             })
             console.log(addedService.id);
-            const asdasd = addedService.id
-            console.log(asdasd);
             const addedMatching = await setDoc(doc(db,"Matches",addedService.id),{
-                dislike:[],
-                iliked:[],
+                iLiked:[],
+                likedMe:[],
+                disLike:[],
                 matches:[],
             })
             console.log(addedService);
@@ -48,7 +47,6 @@ function CardCreator(){
             console.error(err);
         }
     }
-
 
 
     //TODO : Create clean Matches template doc (Empty lists, but add the lists and uid + sid)
