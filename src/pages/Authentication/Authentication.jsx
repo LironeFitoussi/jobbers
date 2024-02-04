@@ -35,10 +35,10 @@ function Authentication(){
             e.preventDefault()
             console.log(newUser);
             const registerUser = await createUserWithEmailAndPassword(auth,newUser.Email,newUser.Password)
-            .then(async(UserCred) =>{
-                await setDoc(doc(db,"Users",UserCred.user.uid),{...newUser, role:"User"})
-                console.log(UserCred);
-            })
+            const {Email,firstName,lastName} = {...newUser}
+            const userId = await addDoc(UsersRef,{lastName,firstName,Email, userId:registerUser.user.uid,role:"User"})
+            console.log(userId);
+            console.log("user logged in");
         }
         catch(err){
             console.error(err);
