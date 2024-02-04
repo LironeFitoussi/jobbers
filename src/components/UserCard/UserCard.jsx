@@ -85,7 +85,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
           background: "none",
           height: "30vh",
           border: "1px solid black",
-          width: "fit-content",
+          width: "50vw",
           padding:"5px",    justifyContent: "center",
         }
       }
