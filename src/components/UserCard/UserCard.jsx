@@ -1,8 +1,8 @@
 import styles from './UserCard.module.css'
 import { collection, doc, getDoc } from "firebase/firestore";
-import { db } from '../../config/firebase';
-const UserCard = ({ service, isPreview }) => {
-    const { serviceId, category, desc, fName, lName, age, type, experince, uid } = service
+
+const UserCard = ({ service }) => {
+    const { id, category, desc, fName, lName, age, type, experince, uid } = service
     console.log(service);
     const nextCard = () => {
         // todo: set next card logic   
@@ -50,7 +50,7 @@ const UserCard = ({ service, isPreview }) => {
                 <div className={styles.cardHeader}>
                     <h1>{fName + ' ' + lName} <span>{age}</span></h1>
                     <p>{category}</p>
-                    < div >
+                    <div div >
                         {type === 'freelancer' && <p>EXPERirnce: {experince}</p>}
                         <p>About Me: {desc}</p>
                     </div>
