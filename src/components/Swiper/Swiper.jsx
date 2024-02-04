@@ -11,19 +11,19 @@ const Swiper = ({ userType }) => {
         const fetchServices = async () => {
             try {
                 let serviceQuery;
-                if (userType === 'employer') {
+                if (userType === 'Client') {
                     serviceQuery = query(
                         collection(db, 'Services'),
                         where('category', '==', 'Photographer'),
                         where('isActive', '==', true),
-                        where('type', '==', 'freelancer'),
+                        where('type', '==', 'Freelancer'),
                     );
-                } else if (userType === 'freelancer') {
+                } else if (userType === 'Freelancer') {
                     serviceQuery = query(
                         collection(db, 'Services'),
                         where('category', '==', 'Photographer'),
                         where('isActive', '==', true),
-                        where('type', '==', 'employer'),
+                        where('type', '==', 'Client'),
                     );
                 }
 

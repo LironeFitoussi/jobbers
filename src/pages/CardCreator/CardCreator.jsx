@@ -4,10 +4,10 @@ import UserProvider from "../../context/User";
 import { UserContext } from "../../context/User";
 import { db, auth } from '../../config/firebase'
 import { collection, addDoc, onSnapshot, setDoc, doc, getDoc, getDocs, deleteDoc } from 'firebase/firestore'
-
+import { useNavigate } from "react-router-dom";
 
 function CardCreator(){
-
+    const navigate = useNavigate()
     const [currData,setCurrData] = useState({})
     const [timeUnit,setTimeUnit] = useState(null)
     const {user} = useContext(UserContext)
@@ -34,21 +34,20 @@ function CardCreator(){
                 uid:user.uid,
             })
             console.log(addedService.id);
-            const asdasd = addedService.id
-            console.log(asdasd);
             const addedMatching = await setDoc(doc(db,"Matches",addedService.id),{
-                dislike:[],
-                iliked:[],
+                iLiked:[],
+                likedMe:[],
+                disLike:[],
                 matches:[],
             })
             console.log(addedService);
             console.log(addedMatching);
+            navigate("/myServices")
         }
         catch(err){
             console.error(err);
         }
     }
-
 
 
     //TODO : Create clean Matches template doc (Empty lists, but add the lists and uid + sid)

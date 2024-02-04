@@ -51,7 +51,7 @@ function CreatorForm(props){
                 <h1>This is the Freelancer's form</h1>
                 <div>
                     <label htmlFor="fullName">Full name : </label>
-                    <input type="text" name="fullName" disabled value={`${user?.firstName} ${user?.lastName}`}/>
+                    <input type="text" name="fullName" disabled value={`${user?.fName} ${user?.lName}`}/>
                 </div>
                 <div>
                     <label htmlFor="email">Email : </label>
@@ -89,7 +89,7 @@ function CreatorForm(props){
             <h1>This is the Client's form</h1>
             <div>
                 <label htmlFor="fullName">Full name : </label>
-                <input type="text" name="fullName" onChange={inputUpdater} disabled value={user?.firstName +" "+ user?.lastName}/>
+                <input type="text" name="fullName" onChange={inputUpdater} disabled value={`${user?.fName , user?.lName}`}/>
             </div>
             <div>
                 <label htmlFor="email">Email : </label>
