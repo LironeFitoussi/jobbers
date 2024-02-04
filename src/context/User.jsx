@@ -3,11 +3,12 @@ import { db, auth } from "../config/firebase";
 import { useEffect, useState } from "react";
 import { createContext } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext({});
 
 export default function UserProvider({ children }) {
-  
+
   const [chosenService, setChosenService] = useState()
   const [user, setUser] = useState();
   const signOutHandler = () => {
@@ -15,15 +16,16 @@ export default function UserProvider({ children }) {
       .then(() => {
         console.log("user Is OUTTT");
         setUser();
-
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
   useEffect(() => {
     onUserChange();
   }, []);
+  
   const onUserChange = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
