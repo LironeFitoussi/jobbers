@@ -10,6 +10,7 @@ export default function Find() {
   const [serviceData, SetServiceData] = useState();
   const { id } = useParams();
   const {setChosenService}=useContext(UserContext)
+  console.log(id);
   setChosenService(id)
   const getServiceType = async () => {
     const snapshot = await getDoc(doc(db, "Services", id));
