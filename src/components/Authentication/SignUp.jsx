@@ -16,6 +16,10 @@ function SignUp(props){
                     <input type="text" name="Email" onChange={inputInfo} /><br></br>
                     <label htmlFor="Password" >Password : </label><br />
                     <input type="password" name="Password" onChange={inputInfo} /><br></br><br />
+                    <label htmlFor="Age">Age : </label>
+                    <input type="text" name="Age" onChange={inputInfo}/>
+                    <label htmlFor="Phone">Phone number : </label>
+                    <input type="number" name="Phone" onChange={inputInfo}/>
                     <button type="submit" className="submitAuth">Submit</button>
                 </form>
             </>

@@ -1,20 +1,19 @@
-import {db,auth} from '../../config/firebase'
+import { db, auth } from '../../config/firebase'
 import React, { createContext, useState, useContext, useEffect } from "react";
 import LogIn from '../../components/Authentication/LogIn';
 import SignUp from '../../components/Authentication/SignUp';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword   } from "firebase/auth";
-import {collection , addDoc, onSnapshot, setDoc , doc, getDoc, getDocs , deleteDoc} from 'firebase/firestore'
-import UserContext from '../../context/User'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc, onSnapshot, setDoc, doc, getDoc, getDocs, deleteDoc } from 'firebase/firestore'
+import { UserContext } from '../../context/User'
 
 
-function Authentication(){
+function Authentication() {
 
-    // const {user, setUser, setUserFromDb, signOutHandler} = useContext(UserContext)
-    
-    const [newUser,setNewUser] = useState({})
+    const { user, setUser, setUserFromDb, signOutHandler } = useContext(UserContext)
+
+    const [newUser, setNewUser] = useState({})
     const [isRegistered, setIsRegistered] = useState(true)
 
-    const UsersRef = collection(db,"Users")
 
 
     const inputInfo = (e) => {
@@ -23,39 +22,46 @@ function Authentication(){
         setNewUser(newUser)
     }
 
-    const submitLogin = async (e) =>{
+    const submitLogin = async (e) => {
         e.preventDefault()
-        console.log(e.target.value);
-        const logUser = await signInWithEmailAndPassword(auth,newUser.Email,newUser.Password)
+        const logUser = await signInWithEmailAndPassword(auth, newUser.Email, newUser.Password)
         console.log(logUser);
+        console.log("user logged");
     }
 
-    const submitSignUp = async(e) =>{
-        try{
+    const submitSignUp = async (e) => {
+        try {
             e.preventDefault()
             console.log(newUser);
-            const registerUser = await createUserWithEmailAndPassword(auth,newUser.Email,newUser.Password)
-            const {Email,firstName,lastName} = {...newUser}
-            const userId = await addDoc(UsersRef,{lastName,firstName,Email, userId:registerUser.user.uid,role:"User"})
-            console.log(userId);
-            console.log("user logged in");
+            createUserWithEmailAndPassword(auth, newUser.Email, newUser.Password)
+                .then(async (userCred) => {
+                    const { Email, firstName, lastName, Phone, Age } = { ...newUser }
+                    console.log(userCred);
+                    await setDoc(doc(db, "Users", userCred.user.uid), { lastName, firstName, Email, Phone, Age, role: "User",uid:userCred.user.uid })
+                    console.log("user logged in");
+                })
         }
-        catch(err){
+        catch (err) {
             console.error(err);
         }
     }
 
-    const toggleType = () =>{
+    const toggleType = () => {
         setIsRegistered(!isRegistered)
     }
 
 
     return (
         <>
-        <div className='authDiv'>
-            {isRegistered ? <LogIn inputInfo={inputInfo} submitLogin={submitLogin}/> : <SignUp inputInfo={inputInfo} submitSignUp={submitSignUp}/>}
-            <br /><h3>Don't have an account? <span onClick={toggleType}>{isRegistered ? "Click here to Sign Up" : "Click here to Log In"}</span> </h3>
-        </div>
+            {user ? <div>
+                Hello user
+
+                <button onClick={signOutHandler}>Sign out</button>
+            </div> : <div className='authDiv'>
+                {isRegistered ? <LogIn inputInfo={inputInfo} submitLogin={submitLogin} /> : <SignUp inputInfo={inputInfo} submitSignUp={submitSignUp} />}
+                <br /><h3>Don't have an account? <span onClick={toggleType}>{isRegistered ? "Click here to Sign Up" : "Click here to Log In"}</span> </h3>
+            </div>}
+
         </>
     )
 
@@ -66,11 +72,11 @@ function Authentication(){
 
 
     return (
-       <>
-        <div className='authDiv'>
-            <LogIn />
-        </div>
-       </> 
+        <>
+            <div className='authDiv'>
+                <LogIn />
+            </div>
+        </>
     )
 
 }
