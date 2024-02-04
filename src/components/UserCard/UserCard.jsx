@@ -61,28 +61,6 @@ const UserCard = ({ service, isPreview, selectAServiceHandler,isSwiper }) => {
     }
 
     
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
   };
 
   const addToUnwanted = async () => {
@@ -100,7 +78,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler,isSwiper }) => {
           display: "flex",
           flexDirection: "column",
           aligniItems: "center",
-          background:"none",height:"30vh"
+          background:"none",height:"30vh",border:"1px solid black"
         }
       }
       onClick={() => isPreview && selectAServiceHandler(id)}>
