@@ -6,10 +6,11 @@ import Home from "./pages/Home/Home.jsx";
 import Matches from "./pages/Matches/Matches.jsx";
 import CardCreator from "./pages/CardCreator/CardCreator.jsx";
 import MyServices from "./pages/MyServices/MyServices.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
+
 function App() {
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Authentification />} />
@@ -18,6 +19,7 @@ function App() {
         <Route path="/myServices" element={<MyServices />} />
         {/* <Route path='/settigns' element={< Settings />} /> */}
       </Routes>
+      <Navbar />
     </BrowserRouter>
   );
 }
