@@ -21,9 +21,9 @@ export default function Navbar() {
                 </li>
                 <li className={styles.li}>
                     {user ? (
-                        <Link to="/matches"><img className={styles.matchesIcon} src="public/assets/images/handshake-icon-35510.png" alt="" /></Link>
+                        <Link to="/matches"><img className={styles.matchesIcon} src="https://cdn-icons-png.flaticon.com/512/1/1342.pngnp" alt="" /></Link>
                     ) : (
-                        <img className={styles.matchesIcon} src="public/assets/images/handshake-icon-35510.png" alt="" />
+                        <img className={styles.matchesIcon} src="https://cdn-icons-png.flaticon.com/512/1/1342.pngnp" alt="" />
                     )}
                 </li>
             </ul>
