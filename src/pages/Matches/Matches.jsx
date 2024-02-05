@@ -80,6 +80,7 @@ export default function Matches() {
       {matchData ? (
         <div className={styles.matchContainer}>
           {serviceData?.map((service, index) => {
+            const phoneNumber = service.phone.replace(0, "972");
             return (
               <div key={index} className={styles.match}>
                 <img
