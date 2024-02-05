@@ -37,7 +37,7 @@ function MyServices({isAdmin}) {
   useEffect(() => {
    if(isAdmin){
     console.log("its admin");
-    // getAdminServices()
+    getAdminServices()
    }
    else{
     console.log("its user");
@@ -54,7 +54,7 @@ function MyServices({isAdmin}) {
   const navToCreator=()=>{
     navigate(`/creator`)
   }
-  
+
   return (
     <div className={styles.container}>
       {myServicesList.map((item, index) => {

@@ -12,8 +12,6 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
     console.log("next card");
   };
 
-  console.log(service);
-
   const addToWanted = async () => {
     console.log("i want  him");
     // todo: set add to Favorites logic (await)
@@ -75,7 +73,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
     });
   };
 
-  console.log(category);
+  // console.log(category);
 
   return (
     <div

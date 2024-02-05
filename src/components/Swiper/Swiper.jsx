@@ -52,11 +52,10 @@ const Swiper = ({ userType }) => {
               const forbiddenIds = [];
               matchesSnapshot = matchesSnapshot.data();
               forbiddenIds.push(
-                ...(matchesSnapshot.matches || []),
-                ...(matchesSnapshot.disLike || []),
-                ...(matchesSnapshot.iLiked || [])
+                ...(matchesSnapshot?.matches || []),
+                ...(matchesSnapshot?.disLike || []),
+                ...(matchesSnapshot?.iLiked || [])
               );
-
               const filteredServices = allServices.filter(
                 (service) => !forbiddenIds.includes(service.id)
               );
