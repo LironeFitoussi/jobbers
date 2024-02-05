@@ -1,6 +1,6 @@
 header img {
   width: 50vw;
-  filter: drop-shadow(2px 2px 4px #747474e4);
+  /* filter: drop-shadow(2px 2px 4px #747474e4); */
   margin: 1rem;
 }
 
@@ -16,4 +16,6 @@ header img {
   -webkit-box-shadow: 10px 10px 10px -1px rgba(0, 0, 0, 0.11);
   -moz-box-shadow: 10px 10px 10px -1px rgba(0, 0, 0, 0.11);
   margin-bottom: 2vh;
+  position: sticky;
+  top: 0;
 }

@@ -1,16 +1,17 @@
 .authDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 70vh;
+  margin-bottom: 10vh;
 }
 
 .authDiv h3 {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .authDiv h3 span {
-    text-decoration: underline;
+  text-decoration: underline;
 }

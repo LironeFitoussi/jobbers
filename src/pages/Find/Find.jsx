@@ -21,7 +21,7 @@ export default function Find() {
   }, [useParams]);
 
   return (
-    <section>
+    <section className={styles.cardsContainerSection}>
       <header className={styles.cardsContainer}>
         <Swiper userType={serviceData?.type} />
       </header>

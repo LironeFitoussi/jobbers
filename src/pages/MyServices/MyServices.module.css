@@ -1,16 +1,17 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2vh;
-    min-height: 90vh
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  min-height: 90vh;
+  margin: 10vh 0;
 }
-.addAnotherBtn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    width: 60px;
-    height: 60px;
-    font-size: 50px;
+.addAnotherBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
 }
