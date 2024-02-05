@@ -8,6 +8,34 @@
   </head>
   <body>
     <div id="root"></div>
+    <div id="errorElem" style="display: none;">
+      <h1 style="color: red;">This app is only supported on mobile phones.</h1>
+    </div>
+    <script>
+      let w = window.innerWidth;
+      const rootElem = document.getElementById('root');
+      const errorElem = document.getElementById('errorElem');
+      
+      function handleResize() {
+        w = window.innerWidth;
+
+        if (w >= 450) {
+          rootElem.style.display = 'none';
+          errorElem.style.display = 'block';
+        } else {
+          rootElem.style.display = 'block';
+          errorElem.style.display = 'none';
+        }
+
+        console.log(w);
+      }
+
+      // Initial check on page load
+      handleResize();
+
+      // Attach the handleResize function to the resize event
+      window.addEventListener('resize', handleResize);
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
