@@ -18,4 +18,5 @@ header img {
   margin-bottom: 2vh;
   position: sticky;
   top: 0;
+  z-index: 2222222222;
 }
