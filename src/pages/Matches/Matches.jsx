@@ -75,11 +75,7 @@ export default function Matches() {
   return (
     <section className={styles.matchesContainer}>
       <h1 style={{ textAlign: "center" }}>
-        Your Matches{" "}
-        <button
-          onClick={() => {
-            console.log(matchData);
-          }}></button>
+        Your Matches
       </h1>
       {matchData ? (
         <div className={styles.matchContainer}>
