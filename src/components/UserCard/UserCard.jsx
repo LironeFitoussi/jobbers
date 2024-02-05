@@ -67,7 +67,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
     console.log("i dont want  him");
     const myServiceDoc = await getDoc(doc(db, "Matches", chosenService));
     const myServiceData = myServiceDoc.data();
-    myServiceData.disLike.push(id)
+    myServiceData.disLike.push(id);
     await updateDoc(doc(db, "Matches", chosenService), {
       disLike: myServiceData.disLike,
     });
@@ -78,37 +78,41 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
   return (
     <div
       className={styles.container}
-      style={
-        isPreview && {
-          position: "relative",
-          display: "flex",
-          flexDirection: "column",
-          aligniItems: "center",
-          background: "none",
-          height: "30vh",
-          border: "1px solid black",
-          width: "50vw",
-          padding:"5px",    justifyContent: "center",
-        }
-      }
+      style={isPreview && { position: "initial" }}
       onClick={() => isPreview && selectAServiceHandler(id)}>
       <div className={styles.bgImg}></div>
       <div>
-        <img className={styles.profileImg} src="" alt="" />
         <div className={styles.cardHeader}>
-          <h1>
-            {fName + " " + lName} <span>{age}</span>
-          </h1>
-          <p>{category?.replace(/-/g , " ")}</p>
           <div>
+            <h1>
+              {fName + " " + lName} <span>{age}</span>
+            </h1>
+            <img
+              className={styles.profilePic}
+              src="https://media.istockphoto.com/id/526947869/vector/man-silhouette-profile-picture.jpg?s=612x612&w=0&k=20&c=5I7Vgx_U6UPJe9U2sA2_8JFF4grkP7bNmDnsLXTYlSc="
+              alt="profileimg"
+            />
+          </div>
+          <p>{category.replace(/-/g, " ")}</p>
+          <div div>
             {type === "Freelancer" && <p>Experirnce: {experince}</p>}
             <p>About Me: {description}</p>
           </div>
         </div>
         {!isPreview && (
-          <section>
-            <button onClick={addToWanted}>||LIKE</button>
-            <button onClick={addToUnwanted}>||DISLIKE</button>
+          <section className={styles.btnSection}>
+            <button className={styles.btnDisLike} onClick={addToWanted}>
+              <img
+                src="https://cdn.freebiesupply.com/logos/large/2x/facebook-like-logo-png-transparent.png"
+                alt=""
+              />
+            </button>
+            <button className={styles.btnLike} onClick={addToWanted}>
+              <img
+                src="https://cdn.freebiesupply.com/logos/large/2x/facebook-like-logo-png-transparent.png"
+                alt=""
+              />
+            </button>
           </section>
         )}
       </div>

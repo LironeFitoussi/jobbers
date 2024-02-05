@@ -5,6 +5,7 @@ import { UserContext } from "../../context/User";
 import { db, auth } from '../../config/firebase'
 import { collection, addDoc, onSnapshot, setDoc, doc, getDoc, getDocs, deleteDoc } from 'firebase/firestore'
 import { useNavigate } from "react-router-dom";
+import styles from "./CardCreator.module.css"
 
 function CardCreator(){
     const navigate = useNavigate()
