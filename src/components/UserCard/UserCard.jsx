@@ -93,7 +93,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
               alt="profileimg"
             />
           </div>
-          <p>{category.replace(/-/g, " ")}</p>
+          <p>{category?.replace(/-/g, " ")}</p>
           <div div>
             {type === "Freelancer" && <p>Experirnce: {experince}</p>}
             <p>About Me: {description}</p>
