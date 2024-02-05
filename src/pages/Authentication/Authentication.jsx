@@ -20,29 +20,24 @@ function Authentication() {
 
     const inputInfo = (e) => {
         newUser[e.target.name] = e.target.value
-        console.log(e.target.value);
         setNewUser(newUser)
     }
 
     const submitLogin = async (e) => {
         e.preventDefault()
         const logUser = await signInWithEmailAndPassword(auth, newUser.email, newUser.password)
-        console.log(logUser);
-        console.log("user logged");
+
         navigate("/myServices")
     }
 
     const submitSignUp = async (e) => {
         try {
             e.preventDefault()
-            console.log(newUser);
             createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
                 .then(async (userCred) => {
                     const { email, fName, lName, phone, age } = { ...newUser }
-                    console.log(userCred);
                     await setDoc(doc(db, "Users", userCred.user.uid), { fName, lName, email, phone, age, role: "User", uid: userCred.user.uid })
-                    console.log("user logged in");
-                    // Todo: navigarte to create
+                    // console.log("user logged in");
                 })
         }
         catch (err) {

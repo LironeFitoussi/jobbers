@@ -28,7 +28,6 @@ function MyServices({isAdmin}) {
       const snapshot = await getDocs(collectionRef);
       const tempList = []
       snapshot.docs.map(doc => tempList.push({ ...doc.data(), id: doc.id }));
-      console.log(tempList);
       setMyServicesList(tempList);
     } catch (error) {
       
@@ -36,11 +35,11 @@ function MyServices({isAdmin}) {
   }
   useEffect(() => {
    if(isAdmin){
-    console.log("its admin");
+    // console.log("its admin");
     getAdminServices()
    }
    else{
-    console.log("its user");
+    // console.log("its user");
     getUserServices()
    }
     
@@ -48,7 +47,6 @@ function MyServices({isAdmin}) {
 
   const selectAServiceHandler = (serviceId) => {
     setChosenService(serviceId)
-    console.log(serviceId);
     navigate(`/find/${serviceId}`)
   }
   const navToCreator=()=>{

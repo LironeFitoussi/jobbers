@@ -50,10 +50,6 @@ export default function Matches() {
     fetchMatches();
   }, [user]);
 
-  useEffect(()=>{
-    console.log(matchData);
-  },[matchData])
-
   useEffect(() => {
     if (matchData) {
       const fetchData = async () => {
@@ -78,43 +74,43 @@ export default function Matches() {
 
   return (
     <section className={styles.matchesContainer}>
-      <h1 style={{ textAlign: "center" }}>Your Matches <button onClick={()=>{console.log(matchData);}}></button></h1>
-      {matchData? (
-       <div className={styles.matchContainer}>
-        {console.log("T")}
-       { console.log(matchData)}
-       {serviceData?.map((service, index) => {
-        
-       
-        
-        console.log(service);
-         return (
-           <div key={index} className={styles.match}>
-             <img
-               src="https://media.istockphoto.com/id/526947869/vector/man-silhouette-profile-picture.jpg?s=612x612&w=0&k=20&c=5I7Vgx_U6UPJe9U2sA2_8JFF4grkP7bNmDnsLXTYlSc="
-               alt="profileimg"
-             />
-             <div>
-               <p>{`${service.fName} ${service.lName}`}</p>
-               <span>{service.category}</span>
-             </div>
-             <button
-               type="button"
-               onClick={() => {
-                 window.open(
-                   `https://api.whatsapp.com/send?phone=${phoneNumber}&text=Ready%20to%20Start%20Working%3F`,
-                   "_blank"
-                 );
-               }}>
-               <img
-                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png"
-                 alt="WhatsApp Icon"
-               />
-             </button>
-           </div>
-         );
-       })}
-     </div>
+      <h1 style={{ textAlign: "center" }}>
+        Your Matches{" "}
+        <button
+          onClick={() => {
+            console.log(matchData);
+          }}></button>
+      </h1>
+      {matchData ? (
+        <div className={styles.matchContainer}>
+          {serviceData?.map((service, index) => {
+            return (
+              <div key={index} className={styles.match}>
+                <img
+                  src="https://media.istockphoto.com/id/526947869/vector/man-silhouette-profile-picture.jpg?s=612x612&w=0&k=20&c=5I7Vgx_U6UPJe9U2sA2_8JFF4grkP7bNmDnsLXTYlSc="
+                  alt="profileimg"
+                />
+                <div>
+                  <p>{`${service.fName} ${service.lName}`}</p>
+                  <span>{service.category}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    window.open(
+                      `https://api.whatsapp.com/send?phone=${phoneNumber}&text=Ready%20to%20Start%20Working%3F`,
+                      "_blank"
+                    );
+                  }}>
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png"
+                    alt="WhatsApp Icon"
+                  />
+                </button>
+              </div>
+            );
+          })}
+        </div>
       ) : (
         <div>You have no matches yet :/</div>
       )}

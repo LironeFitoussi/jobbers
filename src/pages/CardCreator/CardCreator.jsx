@@ -34,15 +34,14 @@ function CardCreator(){
                 isActive:true,
                 uid:user.uid,
             })
-            console.log(addedService.id);
+ 
             const addedMatching = await setDoc(doc(db,"Matches",addedService.id),{
                 iLiked:[],
                 likedMe:[],
                 disLike:[],
                 matches:[],
             })
-            console.log(addedService);
-            console.log(addedMatching);
+            
             navigate("/myServices")
         }
         catch(err){

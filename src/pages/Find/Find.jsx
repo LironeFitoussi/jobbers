@@ -12,7 +12,6 @@ export default function Find() {
   setChosenService(id);
   const getServiceType = async () => {
     const snapshot = await getDoc(doc(db, "Services", id));
-    console.log();
     SetServiceData(snapshot.data());
   };
 

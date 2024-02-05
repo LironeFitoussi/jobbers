@@ -14,7 +14,6 @@ export default function UserProvider({ children }) {
   const signOutHandler = () => {
     signOut(auth)
       .then(() => {
-        console.log("user Is OUTTT");
         setUser();
       })
       .catch((error) => {
@@ -34,7 +33,6 @@ export default function UserProvider({ children }) {
           const docSnapshot = await getDoc(userRef);
           const userDbData = docSnapshot.data();
           setUser({ ...userDbData });
-          console.log("user logged");
 
         } catch (error) {
           console.log(error);

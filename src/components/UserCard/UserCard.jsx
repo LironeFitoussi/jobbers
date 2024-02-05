@@ -7,13 +7,8 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
   const { id, category, description, fName, lName, age, type, experince, uid } =
     service;
   const { chosenService } = useContext(UserContext);
-  const nextCard = () => {
-    // todo: set next card logic
-    console.log("next card");
-  };
 
   const addToWanted = async () => {
-    console.log("i want  him");
     // todo: set add to Favorites logic (await)
     //Step 1: Check if user liked
     //1.1: fetch target match card
@@ -23,9 +18,9 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
     const currentServiceData = currentServiceDoc.data();
     if (currentServiceData.iLiked.indexOf(chosenService) == -1) {
       // i am not in card iLiked
-      console.log("he didn't like me, i will add to his Liked me");
+      // console.log("he didn't like me, i will add to his Liked me");
       if (myServiceData.iLiked.indexOf(id) == -1) {
-        console.log("i will add to my Ilike");
+        // console.log("i will add to my Ilike");
 
         myServiceData.iLiked.push(id);
         await updateDoc(doc(db, "Matches", chosenService), {
@@ -38,19 +33,14 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
         await updateDoc(doc(db, "Matches", id), {
           likedMe: currentServiceData.likedMe,
         });
-        console.log("added to curr LIKED ME");
+        // console.log("added to curr LIKED ME");
       }
-    } else {
-      console.log("We in THE BIG else");
-      console.log(
-        currentServiceData.matches.indexOf(chosenService) == -1 &&
-          myServiceData.matches.indexOf(id) == -1
-      );
+    } else {    
       if (
         currentServiceData.matches.indexOf(chosenService) == -1 &&
         myServiceData.matches.indexOf(id) == -1
       ) {
-        console.log("enter matches");
+        // console.log("enter matches");
         currentServiceData.matches.push(chosenService);
         await updateDoc(doc(db, "Matches", id), {
           matches: currentServiceData.matches,
@@ -64,7 +54,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
   };
 
   const addToUnwanted = async () => {
-    console.log("i dont want  him");
+    // console.log("i dont want  him");
     const myServiceDoc = await getDoc(doc(db, "Matches", chosenService));
     const myServiceData = myServiceDoc.data();
     myServiceData.disLike.push(id);
@@ -101,7 +91,7 @@ const UserCard = ({ service, isPreview, selectAServiceHandler, isSwiper }) => {
         </div>
         {!isPreview && (
           <section className={styles.btnSection}>
-            <button className={styles.btnDisLike} onClick={addToWanted}>
+            <button className={styles.btnDisLike} onClick={addToUnwanted}>
               <img
                 src="https://cdn.freebiesupply.com/logos/large/2x/facebook-like-logo-png-transparent.png"
                 alt=""

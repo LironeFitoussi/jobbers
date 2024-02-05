@@ -20,7 +20,6 @@ function CreatorForm(props) {
   const [isProvider, setIsProvider] = useState(null);
   const [formStage, setFormStage] = useState(1);
 
-  console.log(user);
   //? Info to put inside : user?.firstName, user?.lastName, user.Phone, user.Email, user.Age
 
   const validateType = (e) => {
